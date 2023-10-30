@@ -1,0 +1,14 @@
+def triangulo(a, b, c):
+    s = (a + b + c) / 2
+    area = (s * (s - a) * (s - b) * (s - c)) ** 0.5
+    return area
+
+a = int(input("Informe o valor de a: "))
+b = int(input("Informe o valor de b: "))
+c = int(input("Informe o valor de c: "))
+
+if a < b + c and b < a + c and c < a + b:
+    area = triangulo(a, b, c)
+    print(f"Os valores formam um triangulo de area igual a: {area:.2f}")
+else:
+    print("Os valores não formam um triangulo. Valores informados: a =", a, "b =", b, "c =", c)
