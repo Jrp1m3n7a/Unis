@@ -1,0 +1,12 @@
+N1 = float(input("Digite o primeiro número: "))
+N2 = float(input("Digite o segundo número: "))
+N3 = float(input("Digite o terceiro número: "))
+
+if N1 <= N2 and N1 <= N3:
+    menor_n = N1
+elif N2 <= N1 and N2 <= N3:
+    menor_n = N2
+else:
+    menor_n = N3
+
+print("O menor número é:", menor_n)
