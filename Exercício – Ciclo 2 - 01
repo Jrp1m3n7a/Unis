@@ -1,0 +1,14 @@
+def converte_idade(id_to_days):
+    years = id_to_days // 365
+    months = (id_to_days % 365) // 30
+    days = (id_to_days % 365) % 30
+    return years, months, days
+
+
+id_to_days = int(input("Digite a idade em dias: "))
+
+
+years, months, days = converte_idade(id_to_days)
+
+
+print(f"A idade é de {years} anos, {months} meses e {days} dias.")
