@@ -1,1 +1,20 @@
+def inverter(frase):
+
+    palavras = frase.split()
+
+    invertidas = []
+
+    for palavra in palavras:
+
+        palavra_invertida = palavra[::-1]
+        invertidas.append(palavra_invertida)
+
+    nova_frase = ' '.join(invertidas)
+
+    return nova_frase
+
+original = (input("Digite uma frase para ser invertida: "))
+invertida = inverter(original)
+print("Frase original:", original)
+print("Palavras invertidas:", invertida)
 
