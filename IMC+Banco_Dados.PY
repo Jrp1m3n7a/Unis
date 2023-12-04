@@ -23,13 +23,13 @@ def salvar_resultado_banco(nome, endereco, altura, peso, imc):
     conexao = sqlite3.connect('imc_db.db')
     cursor = conexao.cursor()
 
-    # Inserir dados na tabela 'calculos_imc'
+
     cursor.execute('''
         INSERT INTO calculos_imc (nome, endereco, altura, peso, imc)
         VALUES (?, ?, ?, ?, ?)
     ''', (nome, endereco, altura, peso, imc))
 
-    # Commit e fechar a conexão
+
     conexao.commit()
     conexao.close()
 
@@ -41,51 +41,43 @@ def reiniciar():
     resultado_var.set("Resultado do IMC aparecerá aqui")
 
 def exibir_todos_dados():
-    # Conectar ao banco de dados SQLite
+
     conexao = sqlite3.connect('imc_db.db')
     cursor = conexao.cursor()
 
-    # Selecionar todos os dados da tabela 'calculos_imc'
+
     cursor.execute('SELECT * FROM calculos_imc')
     dados = cursor.fetchall()
 
-    # Criar uma nova janela para exibir os dados em uma tabela
     tabela_window = tk.Toplevel(root)
     tabela_window.title("Dados do IMC")
 
-    # Criar a tabela
     tabela = ttk.Treeview(tabela_window)
     tabela["columns"] = ("ID", "Nome", "Endereço", "Altura", "Peso", "IMC", "Data do Cálculo")
 
-    # Definir cabeçalhos
     for coluna in tabela["columns"]:
         tabela.heading(coluna, text=coluna)
 
-    # Preencher a tabela com os dados
     for dado in dados:
         tabela.insert("", "end", values=dado)
 
     tabela.pack()
 
-    # Fechar a conexão
     conexao.close()
 
 def limpar_dados():
-    # Conectar ao banco de dados SQLite
+
     conexao = sqlite3.connect('imc_db.db')
     cursor = conexao.cursor()
 
-    # Remover todos os dados da tabela 'calculos_imc'
     cursor.execute('DELETE FROM calculos_imc')
 
-    # Commit e fechar a conexão
     conexao.commit()
     conexao.close()
 
 def sair():
     root.destroy()
 
-# Criar tabela se não existir
 def criar_tabela():
     conexao = sqlite3.connect('imc_db.db')
     cursor = conexao.cursor()
@@ -105,14 +97,11 @@ def criar_tabela():
     conexao.commit()
     conexao.close()
 
-# Iniciar a aplicação
 root = tk.Tk()
 root.title("Cálculo do IMC - Índice de Massa Corporal")
 
-# Criar tabela antes de iniciar a aplicação
 criar_tabela()
 
-# Restante do código permanece o mesmo
 nome_var = tk.StringVar()
 endereco_var = tk.StringVar()
 altura_var = tk.StringVar()
@@ -152,7 +141,7 @@ reiniciar_button.grid(row=5, column=0, columnspan=2, pady=5, padx=(10, 0), stick
 exibir_button = tk.Button(root, text="Exibir Dados", command=exibir_todos_dados)
 exibir_button.grid(row=5, column=2, columnspan=2, pady=5, padx=(10, 0), sticky="we")
 
-limpar_button = tk.Button(root, text="Limpar Dados", command=limpar_dados)
+limpar_button = tk.Button(root, text="Limpar Banco de Dados", command=limpar_dados)
 limpar_button.grid(row=6, column=0, columnspan=2, pady=5, padx=(10, 0), sticky="we")
 
 sair_button = tk.Button(root, text="Sair", command=sair)
