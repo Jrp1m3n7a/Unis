@@ -70,6 +70,18 @@ def exibir_todos_dados():
     # Fechar a conexão
     conexao.close()
 
+def limpar_dados():
+    # Conectar ao banco de dados SQLite
+    conexao = sqlite3.connect('imc_db.db')
+    cursor = conexao.cursor()
+
+    # Remover todos os dados da tabela 'calculos_imc'
+    cursor.execute('DELETE FROM calculos_imc')
+
+    # Commit e fechar a conexão
+    conexao.commit()
+    conexao.close()
+
 def sair():
     root.destroy()
 
@@ -139,6 +151,9 @@ reiniciar_button.grid(row=5, column=0, columnspan=2, pady=5, padx=(10, 0), stick
 
 exibir_button = tk.Button(root, text="Exibir Dados", command=exibir_todos_dados)
 exibir_button.grid(row=5, column=2, columnspan=2, pady=5, padx=(10, 0), sticky="we")
+
+limpar_button = tk.Button(root, text="Limpar Dados", command=limpar_dados)
+limpar_button.grid(row=6, column=0, columnspan=2, pady=5, padx=(10, 0), sticky="we")
 
 sair_button = tk.Button(root, text="Sair", command=sair)
 sair_button.grid(row=6, column=3, pady=5, padx=(0, 10), sticky="e")
